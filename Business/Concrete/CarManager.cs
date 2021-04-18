@@ -48,5 +48,10 @@ namespace Business.Concrete
                 Console.WriteLine("Araba ismi iki karakterden büyük olmalı veya günlük ücret giriniz");
             }
         }
+
+        public Car GetCarsById(int id)
+        {
+            return _carDal.Get(c => c.Id == id);
+        }
     }
 }

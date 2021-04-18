@@ -26,10 +26,14 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
+
+            
             foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine("Araba Adı: {0} - Özellik: {1}",car.CarName,car.Description);
             }
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine(carManager.GetCarsById(2).CarName);
             Console.WriteLine("--------------------------------------------------");
             foreach (var car in carManager.GetCarsByBrandId(2))
             {
@@ -46,7 +50,7 @@ namespace ConsoleUI
                 Console.WriteLine("Araba Adı: {0} - Özellik: {1}", car.CarName, car.Description);
             }
             Console.WriteLine("---------------------A R A B A EKLEME-----------------------------");
-            carManager.Add(new Car { BrandId = 2, ColorId = 2, CarName = "Mondeo", ModelYear = 2010, DailyPrice = 500, Description = "Benzin+Otomatik" });
+            carManager.Add(new Car { BrandId = 2, ColorId = 2, CarName = "M", ModelYear = 2010, DailyPrice = 500, Description = "Benzin+Otomatik" });
             foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine("Araba Adı: {0} - Özellik: {1}", car.CarName, car.Description);
