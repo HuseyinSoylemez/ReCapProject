@@ -35,5 +35,18 @@ namespace Business.Concrete
         {
             return _carDal.GetAll(c => c.ColorId == id);
         }
+
+        public void Add(Car car)
+        {
+
+            if (car.CarName.Length > 2 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Araba ismi iki karakterden büyük olmalı veya günlük ücret giriniz");
+            }
+        }
     }
 }

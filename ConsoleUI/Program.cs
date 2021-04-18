@@ -45,6 +45,12 @@ namespace ConsoleUI
             {
                 Console.WriteLine("Araba Adı: {0} - Özellik: {1}", car.CarName, car.Description);
             }
+            Console.WriteLine("---------------------A R A B A EKLEME-----------------------------");
+            carManager.Add(new Car { BrandId = 2, ColorId = 2, CarName = "Mondeo", ModelYear = 2010, DailyPrice = 500, Description = "Benzin+Otomatik" });
+            foreach (var car in carManager.GetAll())
+            {
+                Console.WriteLine("Araba Adı: {0} - Özellik: {1}", car.CarName, car.Description);
+            }
         }
 
         private static void ColorTest()

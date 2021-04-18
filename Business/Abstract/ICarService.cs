@@ -15,5 +15,6 @@ namespace Business.Abstract
 
         List<Car> GetByDailyPrice(decimal min, decimal max);
 
+        void Add(Car car);
     }
 }
