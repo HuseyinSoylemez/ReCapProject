@@ -18,9 +18,34 @@ namespace ConsoleUI
             //    Console.WriteLine(car.Description);
             //}
 
-            CarTest();
+            //CarTest();
 
             //ColorTest();
+
+            //BrandTest();
+
+            CarDetailsTest();
+        }
+
+        private static void CarDetailsTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine("Araba Adı: {0} - Marka: {1} - Renk: {2} - Günlük Fiyat: {3}", car.CarName, car.BrandName, car.ColorName, car.DailyPrice);
+            }
+        }
+
+        private static void BrandTest()
+        {
+            Console.WriteLine("-----------------------M A R K A---------------------------");
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
+            }
         }
 
         private static void CarTest()
@@ -77,6 +102,12 @@ namespace ConsoleUI
 
             Console.WriteLine("-----------------------R E N K Silindi---------------------------");
             colorManager.Delete(color1);
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorName);
+            }
+            Console.WriteLine("-----------------------R E N K Güncellendi---------------------------");
+            colorManager.Update(new Color { ColorId=1005,ColorName="Mavi"});
             foreach (var color in colorManager.GetAll())
             {
                 Console.WriteLine(color.ColorName);
