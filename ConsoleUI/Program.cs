@@ -12,11 +12,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarManager carManager = new CarManager(new InMemoryCarDal());
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine(car.Description);
-            //}
+            //InMemoryTest();
 
             //CarTest();
 
@@ -33,6 +29,15 @@ namespace ConsoleUI
             RentalDetailsTest();
             Console.Read();
         }
+
+        //private static void InMemoryTest()
+        //{
+        //    CarManager carManager = new CarManager(new InMemoryCarDal());
+        //    foreach (var car in carManager.GetAll())
+        //    {
+        //        Console.WriteLine(car.Description);
+        //    }
+        //}
 
         private static void RentalAddTest()
         {
