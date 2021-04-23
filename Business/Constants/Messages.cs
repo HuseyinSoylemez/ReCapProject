@@ -12,7 +12,7 @@ namespace Business.Constants
         public static string Updated = "Güncelleme işlemi başarılı ";
         public static string Listed = "Listeleme işlemi başarılı";
         public static string MaintenanceTime = "Sistem bakımda";
-       
 
+        public static string RentalAddedError = "Araç teslim edilmedi, tekrar kiraya verilemez";
     }
 }

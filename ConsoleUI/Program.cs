@@ -25,10 +25,58 @@ namespace ConsoleUI
             //BrandTest();
 
             CarDetailsTest();
+
+            CustomerDetailsTest();
+            RentalDetailsTest();
+            RentalAddTest();
+
+            RentalDetailsTest();
+            Console.Read();
+        }
+
+        private static void RentalAddTest()
+        {
+            Console.WriteLine("------------------Araç Kiralama------------------------");
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var rental = rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now });
+            Console.WriteLine(rental.Message);
+        }
+
+        private static void RentalDetailsTest()
+        {
+            Console.WriteLine("------------------Araç Kiralama Detay------------------------");
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetRentalDetails();
+            if (result.Success == true)
+            {
+                foreach (var rental in result.Data)
+                {
+                    Console.WriteLine("Araba Adı: {0} - Kiralandığı Tarih: {1} - Teslim Tarihi: {2} - Kampanya: {3}", rental.CarName, rental.RentDate, rental.ReturnDate, rental.CompanyName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void CustomerDetailsTest()
+        {
+            Console.WriteLine("------------------Müşteri Detay------------------------");
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.GetCustomerDetails();
+            if (result.Success == true)
+            {
+                foreach (var customer in result.Data)
+                {
+                    Console.WriteLine("Müşteri No: {0} - Adı: {1} - Soyadı: {2} - Kampanya: {3}", customer.UserId, customer.FirstName, customer.LastName, customer.CompanyName);
+                }
+            }
         }
 
         private static void CarDetailsTest()
         {
+            Console.WriteLine("------------------Araba Detay------------------------");
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
             if (result.Success==true)
