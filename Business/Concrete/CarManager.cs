@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -46,6 +47,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
@@ -60,7 +62,7 @@ namespace Business.Concrete
             //    //Console.WriteLine("Araba ismi iki karakterden büyük olmalı veya günlük ücret giriniz");
             //}
 
-            ValidationTool.Validate(new CarValidator(), car);
+            
 
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
