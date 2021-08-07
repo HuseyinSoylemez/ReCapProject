@@ -51,6 +51,8 @@ namespace WebAPIs
             //services.AddSingleton<IRentalService, RentalManager>();
             //services.AddSingleton<IRentalDal, EfRentalDal>();
 
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -80,6 +82,7 @@ namespace WebAPIs
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyOrigin());
             app.UseHttpsRedirection();
 
             app.UseRouting();
