@@ -54,7 +54,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
 
-        [SecuredOperation("car.add,admin")]
+        //[SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
@@ -70,8 +70,8 @@ namespace Business.Concrete
             //    return new ErrorResult(Messages.NameInvalid);
             //    //Console.WriteLine("Araba ismi iki karakterden büyük olmalı veya günlük ücret giriniz");
             //}
+         
 
-            
 
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
