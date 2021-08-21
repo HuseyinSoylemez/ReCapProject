@@ -27,11 +27,11 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-        [CacheAspect(duration: 10)]
+        //[CacheAspect(duration: 10)]
         [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
-            Thread.Sleep(6000);
+            Thread.Sleep(1000);
             if (DateTime.Now.Hour == 20)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
@@ -76,10 +76,10 @@ namespace Business.Concrete
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
         }
-        [CacheAspect(duration: 10)]
-        public IDataResult<Car> GetCarsById(int id)
+        // [CacheAspect(duration: 10)]
+        public IDataResult<List<Car>> GetCarsById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == id));
         }
 
         public IResult Delete(Car car)
